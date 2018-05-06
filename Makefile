@@ -1,5 +1,11 @@
 SHELL=bash
 
+ifndef distrib
+ifdef PULP_ARTIFACTORY_DISTRIB
+distrib = $(PULP_ARTIFACTORY_DISTRIB)
+endif
+endif
+
 distrib ?= $(shell lsb_release -i -s)_$(firstword $(subst ., ,$(shell lsb_release -r -s)))
 
 ifneq '$(profile)' ''
@@ -127,11 +133,9 @@ get:
 	@echo "Downloading SDK $(sdk_version)"
 	@echo
 	@./$(ARTIFACT_DIR)/get-sdk-$(version)-$(distrib).py $(alias_opt)
-	@mkdir -p doc
-	@rm -f doc/$(sdk_version) && ln -s ../pkg/sdk/$(sdk_version)/doc/html doc/$(sdk_version)
 	@echo 
 	@echo "Done, this SDK can now be used by sourcing one of these files: env/env-sdk-$(sdk_version).sh or env/env-sdk-$(sdk_version).csh"
-	@echo "The documentation can be found here: doc/$(sdk_version)/sdk/index.html"
+	@echo "The documentation can be found here: pkg/sdk/$(sdk_version)/doc/sdk/index.html"
 
 endif
 
