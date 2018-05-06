@@ -14,7 +14,7 @@ ifdef alias
 alias_opt = --alias=sdk:$(alias)
 sdk_version = $(alias)
 else
-sdk_version = $(sdk)
+sdk_version = $(version)
 endif
 
 export PULP_SDK_SRC_PATH=$(CURDIR)/src/sdk/$(sdk_version)
@@ -40,16 +40,20 @@ help:
 
 list:
 	@echo "Available SDK versions:"
-	@for sdk in `ls $(ARTIFACT_DIR)`; do  \
-		version=`echo $$sdk | sed s/get-sdk-// | sed s/-$(distrib).py//`; \
-		printf "  %-15s %s\n" "$$version" "make version=$$version get"; \
-	done
+	@if [ -e $(ARTIFACT_DIR) ]; then \
+		for sdk in `ls $(ARTIFACT_DIR)/*.py`; do  \
+			version=`echo $$sdk | sed s#$(ARTIFACT_DIR)/## | sed s/get-sdk-// | sed s/-$(distrib).py//`; \
+			printf "  %-45s %s\n" "$$version" "make version=$$version get"; \
+		done \
+	fi
 
 sdk:
 	@echo "Installed SDK versions:"
-	@for sdk in `ls pkg/sdk`; do  \
-		printf "  %-15s %s\n" "$$sdk" "env/env-sdk-$$sdk.sh"; \
-	done
+	@if [ -e pkg/sdk ]; then \
+		for sdk in `ls pkg/sdk`; do  \
+			printf "  %-30s %s\n" "$$sdk" "env/env-sdk-$$sdk.sh"; \
+		done \
+	fi
 
 targets:
 	@echo "Available targets:"
@@ -72,10 +76,10 @@ profiles:
 		echo $$profile; \
 	done
 
-ifndef sdk
+ifndef version
 
 get:
-	@echo "The SDK version must be specified through sdk=<version>. Execute \"make list\" to see the available versions."
+	@echo "The SDK version must be specified through version=<version>. Execute \"make list\" to see the available versions."
 	@exit 1
 
 src: get
@@ -122,7 +126,7 @@ build.platform:
 get:
 	@echo "Downloading SDK $(sdk_version)"
 	@echo
-	@./$(ARTIFACT_DIR)/get-sdk-$(sdk)-$(distrib).py $(alias_opt)
+	@./$(ARTIFACT_DIR)/get-sdk-$(version)-$(distrib).py $(alias_opt)
 	@mkdir -p doc
 	@rm -f doc/$(sdk_version) && ln -s ../pkg/sdk/$(sdk_version)/doc/html doc/$(sdk_version)
 	@echo 
