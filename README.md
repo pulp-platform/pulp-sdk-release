@@ -3,11 +3,11 @@
 This section is only relevant if all the packages can be downloaded precompiled. If you don't have access to the artifactory server, follow the other sections to build the packages.
 This is reserved for internal PULP team usage, more information can be retrieved on this [project](https://iis-git.ee.ethz.ch/pulp-sw/pulp-sdk-internal).
 
-The build process will try to download packages suitable for the detected Linux distribution. In case this is not suitable, you can force the distribution to be used by defining this environment variable:
+### Prerequisites
 
-    export PULP_ARTIFACTORY_DISTRIB=<distrib>
+On Ubuntu 16.04, you have to install the following prerequisites to be able to use the PULP SDK:
 
-This can currently be set to `CentOS_7` or `Ubuntu_16`.
+    sudo apt-get install -y build-essential git libftdi-dev libftdi1 doxygen python3-pip libsdl2-dev curl
 
 ### Getting the top repositories
 
@@ -32,8 +32,6 @@ to download the packages for a distribution which is close to yours.
 You can also specify the distribution on the command-line when invoking make:
 
     make list distrib=Ubuntu_16
-
-
 
 ### SDK and dependency download
 
@@ -71,7 +69,6 @@ with this command:
 The PULP SDK requires the FTDI driver to be correctly configured to work properly.
 To install them for a PULP-based board, you can do the following (requires administrator rights):
 
-    sudo apt-get install -y build-essential git libftdi-dev libftdi1 doxygen python3-pip libsdl2-dev curl
     sudo ln -s /usr/bin/libftdi-config /usr/bin/libftdi1-config
     sudo usermod -a -G dialout YOUR_USER_NAME
     touch 90-ftdi_pulp.rules
