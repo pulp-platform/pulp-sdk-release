@@ -8,6 +8,7 @@ This is reserved for internal PULP team usage, more information can be retrieved
 On Ubuntu 16.04, you have to install the following prerequisites to be able to use the PULP SDK:
 
     sudo apt-get install -y build-essential git libftdi-dev libftdi1 doxygen python3-pip libsdl2-dev curl
+    sudo pip3 install artifactory twisted prettytable sqlalchemy pyelftools openpyxl xlsxwriter pyyaml numpy
 
 ### Getting the top repositories
 
