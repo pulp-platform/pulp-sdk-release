@@ -20,7 +20,9 @@ first get this top repository which knows which releases are available:
 
 ### Package server configuration
 
-To download the dependencies, the access to the package server (Artifactory) must be configured. This is reserved for internal usage, more information can be retrieved on this [project]( https://iis-git.ee.ethz.ch/pulp-sw/pulp-sdk-internal). Be careful to configure the artifactory credentials using the .wgetrc file as the packages will be downloaded through wget.
+To download the dependencies, the access to the package server (Artifactory) must be configured.
+This is reserved for internal usage, more information can be retrieved on this [project]( https://iis-git.ee.ethz.ch/pulp-sw/pulp-sdk-internal).
+**You must configure the artifactory credentials using the `.wgetrc` file method**, because the packages will be downloaded through wget (see the internal project for details).
 
 The build process will try to download packages suitable for the detected Linux distribution. In case this is not suitable, you can force the distribution to be used by defining this environment variable:
 
