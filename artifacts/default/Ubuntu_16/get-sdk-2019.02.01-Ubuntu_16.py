@@ -12,8 +12,8 @@ import argparse
 src="59b44701b6ac8390a97936cbd049256fc2917212"
 
 artefacts=[
-  ["https://iis-artifactory.ee.ethz.ch/artifactory/release/CentOS_7/pulp/sdk/mainstream/252d1b3a96c01d0e2860734b320115b5e1de8d58/0/sdk.tar.bz2", "pkg/sdk/2019.02.01"],
-  ["https://iis-artifactory.ee.ethz.ch/artifactory/release/CentOS_7/pulp/pulp_riscv_gcc/mainstream/1.0.9/0/pulp_riscv_gcc.tar.bz2", "pkg/pulp_riscv_gcc/1.0.9"]
+  ["https://iis-artifactory.ee.ethz.ch/artifactory/release/Ubuntu_16/pulp/sdk/mainstream/252d1b3a96c01d0e2860734b320115b5e1de8d58/0/sdk.tar.bz2", "pkg/sdk/2019.02.01"],
+  ["https://iis-artifactory.ee.ethz.ch/artifactory/release/Ubuntu_16/pulp/pulp_riscv_gcc/mainstream/1.0.9/0/pulp_riscv_gcc.tar.bz2", "pkg/pulp_riscv_gcc/1.0.9"]
 ]
 
 exports=[
